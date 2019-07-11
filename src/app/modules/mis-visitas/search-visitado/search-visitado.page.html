@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Buscar miembro visitado</ion-title>
+    <ion-buttons slot="end">
+      <!-- <ion-button onclick="dismiss()">Close</ion-button> -->
+      <ion-button (click)="dismiss()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-searchbar [formControl]="searchText"></ion-searchbar>
+
+
+  <ion-list>
+    <ion-item *ngFor="let item of miembros" (click)="onSelected(item)">
+      <ion-avatar slot="start">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==">
+      </ion-avatar>
+      <ion-label text-wrap>
+        <ion-text color="primary">
+          <h3>
+            {{ item.nombres }} {{ item.ap_paterno }}
+            {{ item.ap_materno }}
+          </h3>
+        </ion-text>
+        <p>
+          <ion-icon name="call"></ion-icon>
+          {{ item.celular }}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

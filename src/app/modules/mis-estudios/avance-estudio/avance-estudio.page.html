@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Avance de estudio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let estudioBiblicoCurso of estudioBiblicoCursos">
+      <!-- <ion-item> -->
+      <ion-label>{{estudioBiblicoCurso.curso_nombre}} [{{ estudioBiblicoCurso.curso_nivel }}]</ion-label>
+      <ion-checkbox color="secondary" slot="end" [(ngModel)]="estudioBiblicoCurso.estudio_biblico_curso_estado">
+        <!-- (click)="updateEstubioBiblicoCurso(estudioBiblicoCurso.estudio_biblico_curso_id, estudioBiblicoCurso.estudio_biblico_curso_estado)" -->
+      </ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" (click)="onSave()">Guardar
+  </ion-button>
+
+</ion-content>

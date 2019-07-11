@@ -1,5 +1,7 @@
 {
   "name": "mobile-es-adventistas",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

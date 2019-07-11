@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from './providers/guards/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -9,12 +10,27 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: './home/home.module#HomePageModule'
+    canActivate: [AuthGuardService],
+    loadChildren: './home/home.module#HomePageModule',
   },
   {
     path: 'list',
-    loadChildren: './list/list.module#ListPageModule'
-  }
+    canActivate: [AuthGuardService],
+    loadChildren: './list/list.module#ListPageModule',
+  },
+  {
+    path: 'mis-visitas',
+    canActivate: [AuthGuardService],
+    loadChildren: './modules/mis-visitas/mis-visitas.module#MisVisitasPageModule',
+  },
+  {
+    path: 'mis-estudios',
+    canActivate: [AuthGuardService],
+    loadChildren: './modules/mis-estudios/mis-estudios.module#MisEstudiosPageModule',
+  },
+  { path: 'login', loadChildren: './auth/login/login.module#LoginPageModule' },
+  // { path: 'search-visitado', loadChildren: './modules/mis-visitas/search-visitado/search-visitado.module#SearchVisitadoPageModule' },
+  // { path: 'add-visitado', loadChildren: './modules/mis-visitas/add-visitado/add-visitado.module#AddVisitadoPageModule' },
 ];
 
 @NgModule({
@@ -23,4 +39,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mis Visitas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [formControl]="textSearch"></ion-searchbar>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Actualizar" refreshingSpinner="crescent"
+      refreshingText="Actualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+
+    <ion-item-sliding *ngFor="let item of personasVisitadas">
+      <ion-item-options side="start">
+        <ion-item-option color="danger" (click)="onEliminar(item.visita_id)">
+          <ion-icon name="trash"></ion-icon>
+          Eliminar
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item [routerLink]="['./', item.visita_id]">
+        <ion-avatar slot="start">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==">
+        </ion-avatar>
+        <ion-label text-wrap>
+          <ion-text color="primary">
+            <h3>
+              {{ item.nombres }} {{ item.ap_paterno }}
+              {{ item.ap_materno }}
+            </h3>
+          </ion-text>
+          <p>
+            <ion-icon name="call"></ion-icon>
+            {{ item.celular }}
+          </p>
+          <ion-text>
+            <p>
+              <ion-icon name="calendar"></ion-icon>{{ item.visita_fecha_visita }}
+              <!-- | <strong *ngIf="item.visita_tipo_visita === 'P'">Visita de pastor</strong> -->
+              <!-- <strong *ngIf="item.visita_tipo_visita === 'L'">Visita de líder</strong> -->
+            </p>
+          </ion-text>
+
+
+        </ion-label>
+      </ion-item>
+
+      <!-- <ion-item-options side="end">
+        <ion-item-option *ngIf="item.ebc > (item.ebc_checked_x/100)" color="warning" (click)="onFinIncompleto(item)">
+          <ion-icon name="alert"></ion-icon>
+          Incompleto
+        </ion-item-option>
+        <ion-item-option *ngIf="item.ebc === (item.ebc_checked_x/100)" (click)="onFinCompleto(item)">
+          <ion-icon name="checkmark"></ion-icon>
+          Completo
+        </ion-item-option>
+        <ion-item-option *ngIf="item.ebc === (item.ebc_checked_x/100)" color="success" (click)="onFinBautismo(item)">
+          <ion-icon name="checkbox"></ion-icon>
+          Bautismo
+        </ion-item-option>
+      </ion-item-options> -->
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab vertical="bottom" [routerLink]="['./new-visita']" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

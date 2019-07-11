@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nueva visita misionera</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+
+      <ion-card-subtitle color="secondary">Datos de la visita</ion-card-subtitle>
+      <!-- <ion-card-title>Card Title</ion-card-title> -->
+    </ion-card-header>
+    <ion-card-content>
+
+      <form [formGroup]="nuevaVisitaForm">
+        <ion-item>
+          <ion-label>Fecha</ion-label>
+          <ion-datetime formControlName="fecha_visita" display-format="MMM DD, YYYY HH:mm"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Tema abordado</ion-label>
+          <ion-textarea formControlName="tema_abordado"></ion-textarea>
+        </ion-item>
+      </form>
+
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle color="secondary">Miembros visitados</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+
+
+      <ion-list>
+        <ion-item-sliding *ngFor="let item of miembrosSeleccionados">
+
+          <ion-item (click)="onSelected(item)">
+            <!-- <ion-avatar slot="start"> -->
+            <!-- <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw=="> -->
+            <!-- </ion-avatar> -->
+            <ion-label text-wrap>
+              <ion-text color="primary">
+                <h3>
+                  {{ item.nombres }} {{ item.ap_paterno }}
+                  {{ item.ap_materno }} ({{ item.num_doc }})
+                </h3>
+              </ion-text>
+              <p>
+                <ion-icon name="call"></ion-icon>
+                {{ item.celular }}
+              </p>
+            </ion-label>
+            <ion-label text-wrap>
+              <ion-item *ngFor="let item of item.indicadors">
+                <ion-label position="floating">{{ item.nombre }}</ion-label>
+                <ion-select placeholder="Seleccione" [(ngModel)]="item.numero_respuesta">
+                  <ion-select-option [value]="1">No</ion-select-option>
+                  <ion-select-option [value]="2">A veces</ion-select-option>
+                  <ion-select-option [value]="3">Si</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-label>
+          </ion-item>
+
+          <ion-item-options side="end">
+            <ion-item-option color="danger" (click)="onEliminar(item.id)">
+              <ion-icon name="trash"></ion-icon>
+              Eliminar
+            </ion-item-option>
+          </ion-item-options>
+
+        </ion-item-sliding>
+
+      </ion-list>
+
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="full" (click)="onSave()">Guardar
+  </ion-button>
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <!-- <ion-fab vertical="bottom" horizontal="end"> -->
+    <ion-fab-button>
+      <ion-icon name="person"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button (click)="addVisitado()">
+        <ion-icon name="person-add"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="searchVisitado()">
+        <ion-icon name="search"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+</ion-content>

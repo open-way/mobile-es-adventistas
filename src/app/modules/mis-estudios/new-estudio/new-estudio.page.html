@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nuevo estudio bíblico</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="estudianteForm">
+    <ion-card>
+      <ion-card-header>
+
+        <ion-card-subtitle color="secondary">Datos del estudiante</ion-card-subtitle>
+        <!-- <ion-card-title>Card Title</ion-card-title> -->
+      </ion-card-header>
+      <ion-card-content>
+
+
+
+        <ion-item>
+          <ion-label position="floating">Nombres</ion-label>
+          <ion-input formControlName="nombres" type="text" name="nombres"></ion-input>
+        </ion-item>
+
+        <!-- <ion-grid> -->
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating">Paterno</ion-label>
+              <ion-input formControlName="ap_paterno" type="text" name="paterno"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating">Materno</ion-label>
+              <ion-input formControlName="ap_materno" type="text" name="materno"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <!-- </ion-grid> -->
+
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating">DNI</ion-label>
+              <ion-input formControlName="num_doc" type="text" name="dni"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating">Celular</ion-label>
+              <ion-input formControlName="celular" type="text" name="celular"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-item>
+          <ion-label>Género</ion-label>
+          <ion-select formControlName="sexo" placeholder="Seleccione">
+            <ion-select-option value="M">Masculino</ion-select-option>
+            <ion-select-option value="F">Femenino</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Estado civil</ion-label>
+          <ion-select formControlName="estado_civil" placeholder="Seleccione">
+            <ion-select-option value="C">Casado</ion-select-option>
+            <ion-select-option value="F">Soltero</ion-select-option>
+            <ion-select-option value="D">Divorciado</ion-select-option>
+            <ion-select-option value="V">Viudo</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+      </ion-card-content>
+    </ion-card>
+
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle color="secondary">Lección</ion-card-subtitle>
+        <!-- <ion-card-title>Card Title</ion-card-title> -->
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Lección</ion-label>
+          <ion-select formControlName="leccion_id" placeholder="Seleccione">
+            <ion-select-option *ngFor="let item of leccions" [value]="item.id">{{ item.nombre }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-card-content>
+      <!-- <ion-button type="submit" expand="block">Guardar</ion-button> -->
+      <ion-button expand="full" (click)="onSave()" [disabled]="estudianteForm.invalid">Guardar
+      </ion-button>
+
+    </ion-card>
+  </form>
+
+</ion-content>

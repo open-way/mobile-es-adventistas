@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiEsUrl: 'http://gospel-api.adventistas.pe/api/mobile/',
 };
