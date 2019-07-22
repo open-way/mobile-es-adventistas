@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiEsUrl: 'http://es-adventistas.net/api/mobile/',
+  // apiEsUrl: 'http://es-adventistas.net/api/mobile/',
+  apiEsUrl: 'http://gospel-api.adventistas.pe/api/mobile/',
+
 };
 
 /*
