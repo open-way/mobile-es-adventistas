@@ -61,14 +61,18 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      // this.authService.authenticationState.subscribe(state => {
-      //   if (state) {
-      //     this.router.navigate(['home']);
-      //     // this.router.navigate(['home', '']);
-      //   } else {
-      //     this.router.navigate(['login']);
-      //   }
-      // });
+      this.authService.authenticationState.subscribe(state => {
+        this.authService.getToken().then(res => {
+          if (res) {
+            this.getInfoUser();
+            this.router.navigate(['home']);
+          } else {
+            this.router.navigate(['login']);
+          }
+        }, err => {
+          this.router.navigate(['login']);
+        });
+      });
 
       this.authService.getToken().then(res => {
         if (res) {

@@ -6,6 +6,7 @@ import { AddVisitadoPage } from '../add-visitado/add-visitado.page';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IndicadorsService, VisitaMisionerasService } from '../providers';
 import { map } from 'rxjs/operators';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-new-visita',
@@ -24,12 +25,34 @@ export class NewVisitaPage implements OnInit {
     private formBuilder: FormBuilder,
     private indicadorsService: IndicadorsService,
     private visitaMisionerasService: VisitaMisionerasService,
+
+    private camera: Camera,
   ) { }
 
   ngOnInit() {
     this.buildForm();
     this.getMasters();
   }
+
+
+  /*
+  public takePhoto() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+    };
+
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      // Handle error
+    });
+  }
+  */
 
   public getMasters() {
     this.indicadorsService.getAll$()

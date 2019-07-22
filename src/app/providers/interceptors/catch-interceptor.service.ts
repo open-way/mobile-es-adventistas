@@ -74,18 +74,19 @@ export class CatchInterceptorService implements HttpInterceptor {
     if (err instanceof HttpErrorResponse) {
       this.catchHttpError(err);
     } else {
-      // console.error(err.error.error.message || '');
+      // console.log(err.error.error.message);
       this.toastService.show(err.error.error.message || '');
     }
   }
 
   private catchHttpError(err: HttpErrorResponse) {
+    console.log(err);
     if (err.status === 401) {
       this.toastService.show(err.error.error.message || '');
       this.catchUnauthorized();
     } else {
-      this.toastService.show(err.message || '');
-      // console.warn(err.statusText);
+      this.toastService.show(err.error.error.message || '');
+      // this.toastService.show(err.message || '');
     }
   }
 

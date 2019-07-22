@@ -10,7 +10,7 @@ const TOKEN_KEY = 'es-auth-token';
 // @Injectable()
 export class AuthService {
     private endPoint = 'auth';
-    // public authenticationState = new BehaviorSubject(false);
+    public authenticationState = new BehaviorSubject(false);
 
     constructor(
         private httpClient: HttpClient,
@@ -22,7 +22,7 @@ export class AuthService {
             .pipe(
                 map(response => {
                     return this.storage.set(TOKEN_KEY, response.access_token).then(() => {
-                        // this.authenticationState.next(true);
+                        this.authenticationState.next(true);
                     });
                 }),
                 catchError(() => of(null)),
@@ -35,7 +35,7 @@ export class AuthService {
             .pipe(
                 map(response => {
                     return this.storage.remove(TOKEN_KEY).then(() => {
-                        // this.authenticationState.next(false);
+                        this.authenticationState.next(false);
                     });
                 }),
                 catchError(() => of({})),
@@ -50,7 +50,7 @@ export class AuthService {
     public checkToken() {
         this.storage.get(TOKEN_KEY).then(res => {
             if (res) {
-                // this.authenticationState.next(true);
+                this.authenticationState.next(true);
             }
         });
     }

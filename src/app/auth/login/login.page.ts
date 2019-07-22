@@ -30,6 +30,7 @@ export class LoginPage implements OnInit {
       .subscribe(res => {
         if (res) {
           this.router.navigateByUrl('home');
+          
         }
       });
   }
