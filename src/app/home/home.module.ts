@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   imports: [
@@ -14,10 +15,11 @@ import { HomePage } from './home.page';
     RouterModule.forChild([
       {
         path: '',
-        component: HomePage
-      }
+        component: HomePage,
+      },
     ])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, SettingsComponent],
+  entryComponents: [SettingsComponent],
 })
 export class HomePageModule {}

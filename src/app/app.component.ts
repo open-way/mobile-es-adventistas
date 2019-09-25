@@ -12,17 +12,17 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  public user = {
-    full_name: '',
-    email: '',
-    picture: null,
-  };
-  public enterprise = {
-    union_nombre: '',
-    mision_asociacion_nombre: '',
-    distrito_misionero_nombre: '',
-    iglesia_nombre: '',
-  };
+  // public user = {
+  //   full_name: '',
+  //   email: '',
+  //   picture: null,
+  // };
+  // public enterprise = {
+  //   union_nombre: '',
+  //   mision_asociacion_nombre: '',
+  //   distrito_misionero_nombre: '',
+  //   iglesia_nombre: '',
+  // };
   public appPages = [
     // {
     //   title: 'Home',
@@ -50,8 +50,6 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private authService: AuthService,
-    private router: Router,
   ) {
     this.initializeApp();
   }
@@ -60,48 +58,8 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
-      this.authService.authenticationState.subscribe(state => {
-        this.authService.getToken().then(res => {
-          if (res) {
-            this.getInfoUser();
-            this.router.navigate(['home']);
-          } else {
-            this.router.navigate(['login']);
-          }
-        }, err => {
-          this.router.navigate(['login']);
-        });
-      });
-
-      this.authService.getToken().then(res => {
-        if (res) {
-          this.getInfoUser();
-          this.router.navigate(['home']);
-        } else {
-          this.router.navigate(['login']);
-        }
-      }, err => {
-        this.router.navigate(['login']);
-      });
-
     });
   }
 
-  private getInfoUser() {
-    this.authService.user()
-      .subscribe(response => {
-        if (response) {
-          this.user.email = response.email;
-          this.user.full_name = response.name;
-        }
-      });
-  }
-
-  public onLoggout() {
-    this.authService.logout()
-      .subscribe(() => {
-        // this.router.navigate(['login']);
-      });
-  }
+  
 }

@@ -2,12 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpEvent, HttpHandler, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-// import { EsOAuthStoreService } from 'src/app/oauth/providers/es-oauth-store.service';
 import { switchMap } from 'rxjs/operators';
-// import { fromPromise } from 'rxjs/observable/fromPromise';
-// import { fromPromise } from 'rxjs/internal/observable/fromPromise';
 import { from } from 'rxjs';
-// import { from } from 'rxjs';
 import { AuthService } from '../resources';
 
 @Injectable()

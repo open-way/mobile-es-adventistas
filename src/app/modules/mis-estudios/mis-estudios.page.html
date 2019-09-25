@@ -1,9 +1,11 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+    <!-- <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-      <!-- <ion-back-button></ion-back-button> -->
-    </ion-buttons>
+    </ion-buttons> -->
     <ion-title>Mis Estudios</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -29,9 +31,12 @@
       </ion-item-options>
 
       <ion-item [routerLink]="['./', item.id]">
-        <ion-avatar slot="start">
+        <!-- <ion-avatar slot="start">
           <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==">
-        </ion-avatar>
+        </ion-avatar> -->
+        <ion-avatar slot="start">
+            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+          </ion-avatar>
         <ion-label text-wrap>
           <ion-text color="primary">
             <h3>
@@ -42,12 +47,13 @@
           <p>
             <ion-icon name="call"></ion-icon>
             {{ item.persona_celular }}
-          </p>
-          <ion-text color="secondary">
-            <p>
-              {{ item.leccion_nombre }}
+            <!-- <ion-text color="secondary"> -->
+              <!-- </ion-text> -->
             </p>
-          </ion-text>
+          <p>
+            <ion-icon name="book"></ion-icon>
+            {{ item.leccion_nombre }}
+          </p>
 
 
         </ion-label>

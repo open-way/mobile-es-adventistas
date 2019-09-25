@@ -9,17 +9,19 @@ export class AuthGuardService implements CanActivate {
 
     constructor(public authService: AuthService) { }
 
-    canActivate(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            this.authService.getToken().then(token => {
-                if (token) {
-                    resolve(true);
-                } else {
-                    resolve(false);
-                }
-            }, err => {
-                reject(false);
-            });
-        });
+    // canActivate(): Promise<any> {
+        canActivate(): boolean {
+        // return new Promise((resolve, reject) => {
+        //     this.authService.getToken().then(token => {
+        //         if (token) {
+        //             resolve(true);
+        //         } else {
+        //             resolve(false);
+        //         }
+        //     }, err => {
+        //         reject(false);
+        //     });
+        // });
+        return true
     }
 }

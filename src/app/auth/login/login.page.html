@@ -11,21 +11,28 @@
 <ion-content color="primary" padding>
   <form #form="ngForm" (ngSubmit)="login(form)">
     <ion-grid>
-      <ion-row color="primary" justify-content-center>
+      <ion-row justify-content-center>
+        <ion-img src="/assets/logos/iasd.svg"></ion-img>
+      </ion-row>
+      <ion-row>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div text-center>
-            <h3>Login</h3>
+            <h3>I<span class="es-d">D</span></h3>
+            <p class="name-upn">Unión Peruana del Norte</p>
           </div>
-          <div padding>
+          <div>
             <ion-item>
-              <ion-input name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
+              <ion-icon name="person" item-left></ion-icon>
+              <ion-input name="email" type="email" placeholder="Usuario" ngModel required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
+              <ion-icon name="key" item-left></ion-icon>
+              <ion-input name="password" type="password" placeholder="Contraseña" ngModel required></ion-input>
             </ion-item>
           </div>
-          <div padding>
-            <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Login</ion-button>
+          <div>
+            <ion-button color="secondary" type="submit" [disabled]="form.invalid" expand="block">Iniciar sesión
+            </ion-button>
           </div>
         </ion-col>
       </ion-row>

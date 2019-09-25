@@ -9,23 +9,14 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { LoadingService, ToastService } from '../utils';
-// import { ToastrService } from 'ngx-toastr';
-// import { EsOAuthStoreService } from 'src/app/oauth/providers';
-// import { environment } from '@env/environment';
 
 @Injectable()
 export class CatchInterceptorService implements HttpInterceptor {
-  // private started;
-  // private loading;
 
   constructor(
-    // private router: Router,
     private loadingService: LoadingService,
     private toastService: ToastService,
-    // private esOAuthStoreService: EsOAuthStoreService,
   ) { }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -37,7 +28,7 @@ export class CatchInterceptorService implements HttpInterceptor {
 
     /** -----------Spinner loading create---------- */
     if (req.method !== 'GET') {
-      this.loadingService.present('Realizando operación.');
+      // this.loadingService.present('Realizando operación.');
     }
     /** ------------------------------------------- */
 
@@ -49,44 +40,29 @@ export class CatchInterceptorService implements HttpInterceptor {
   private logResponse = (event: HttpEvent<any>, method: string) => {
 
     if (event instanceof HttpResponse) {
-      this.loadingService.dismiss();
+      // this.loadingService.dismiss();
       /** -----------Toaster create---------- */
       if (method !== 'GET') {
-        // if (event.body.success) {
         this.toastService.show('Operación exitosa!');
-        // } else {
-        // this.toastService.show(event.body.message);
-        // }
       }
-      // else {
-      // if (!event.body.success) {
-      // this.toastService.show(event.body.message);
-      // }
-      // }
-      /** ------------------------------------------- */
-      // const elapsed_ms = Date.now() - this.started;
-      // console.log(`Solicitud para ${event.url} tomo ${elapsed_ms} ms.`);
     }
   }
 
   private catchError = (err) => {
-    this.loadingService.dismiss();
+    // this.loadingService.dismiss();
     if (err instanceof HttpErrorResponse) {
       this.catchHttpError(err);
     } else {
-      // console.log(err.error.error.message);
       this.toastService.show(err.error.error.message || '');
     }
   }
 
   private catchHttpError(err: HttpErrorResponse) {
-    console.log(err);
     if (err.status === 401) {
       this.toastService.show(err.error.error.message || '');
       this.catchUnauthorized();
     } else {
       this.toastService.show(err.error.error.message || '');
-      // this.toastService.show(err.message || '');
     }
   }
 
@@ -95,7 +71,6 @@ export class CatchInterceptorService implements HttpInterceptor {
   }
 
   private navigateToLogin() {
-    // this.app.getRootNav().setRoot(LoginPage)
   }
 }
 

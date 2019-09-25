@@ -29,8 +29,6 @@ const routes: Routes = [
     loadChildren: './modules/mis-estudios/mis-estudios.module#MisEstudiosPageModule',
   },
   { path: 'login', loadChildren: './auth/login/login.module#LoginPageModule' },
-  // { path: 'search-visitado', loadChildren: './modules/mis-visitas/search-visitado/search-visitado.module#SearchVisitadoPageModule' },
-  // { path: 'add-visitado', loadChildren: './modules/mis-visitas/add-visitado/add-visitado.module#AddVisitadoPageModule' },
 ];
 
 @NgModule({
